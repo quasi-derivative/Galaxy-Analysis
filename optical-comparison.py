@@ -22,12 +22,12 @@ c = SkyCoord('01h36m41.7s','+15d47m01s', frame='icrs')
 # NGC4579: '12h37m43.5220s', '+11d49m05.498s'
 
 # import the near infrared (7625 Å) filter image
-image_i = Image('NGC0628/Optical/NGC0628_SDSS_i.fits')
+image_i = Image('http://dustpedia.astro.noa.gr/Data/GetImage?imageName=NGC0628_SDSS_i.fits&instrument=SDSS')
 image_i = image_i.subimage(center=(c.dec.deg,c.ra.deg), size=600.0)
 print(image_i.shape)
 
 # import the green (4770 Å) filter image
-image_g = Image('NGC0628/Optical/NGC0628_SDSS_g.fits')
+image_g = Image('http://dustpedia.astro.noa.gr/Data/GetImage?imageName=NGC0628_SDSS_g.fits&instrument=SDSS')
 image_g = image_g.subimage(center=(c.dec.deg,c.ra.deg), size=600.0)
 print(image_g.shape)
 
