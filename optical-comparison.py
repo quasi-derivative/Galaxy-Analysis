@@ -1,7 +1,6 @@
 # MODULE IMPORTS
 import numpy as np
 from scipy.stats import norm
-from astropy.wcs import WCS
 from astropy.io import fits, ascii
 from astropy.utils.data import get_pkg_data_filename
 from astropy import units as u
@@ -10,7 +9,7 @@ from astropy.nddata import Cutout2D
 from astropy.convolution import Gaussian2DKernel, convolve
 from reproject import reproject_interp
 
-from mpdaf.obj import Cube, Image
+from mpdaf.obj import Cube, Image, WCS
 from mpdaf.obj import iter_ima, iter_spe
 
 from photutils import CircularAperture, SkyCircularAperture, aperture_photometry
@@ -33,8 +32,8 @@ print(image_g.shape)
 
 # find ratio between the two, and save into an mpdaf.obj.Image (very much hacky)
 diff = image_g.data / image_i.data
-imavg = image_i
-imavg.data = diff
+wcs = WCS(image_g.get_wcs_header())
+imavg = Image(data=diff, wcs=wcs);
 
 # f = plt.figure(figsize=(6,6))
 # f.add_subplot(1,2, 1)
